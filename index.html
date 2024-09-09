@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://wangwenzhi.eu.org/images/favicon_io/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://wangwenzhi.eu.org/images/favicon_io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://wangwenzhi.eu.org/images/favicon_io/favicon-16x16.png">
+    <link rel="manifest" href="https://wangwenzhi.eu.org/images/favicon_io/site.webmanifest">
+    <title>自动财务金额大写转换</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f6f6f6;
+        }
+        .container {
+            background: #ffffff;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 90%;
+            max-width: 600px;
+        }
+        h2 {
+            margin-bottom: 20px;
+            font-size: 32px;
+            color: #333;
+        }
+        input {
+            width: 100%;
+            padding: 15px;
+            font-size: 22px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            outline: none;
+            box-sizing: border-box;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+        input:focus {
+            border-color: #4caf50;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+        }
+        .output {
+            margin-top: 20px;
+            font-size: 24px;
+            color: #444;
+            font-weight: bold;
+            display: inline-block;
+            text-decoration: underline; /* 添加下划线 */
+            text-decoration-color: lightblue; /* 设置下划线颜色 */
+            text-decoration-thickness: 4px; /* 设置下划线厚度 */
+            text-underline-offset: 2px; /* 调整下划线和文字的距离 */
+            padding: 10px 0; /* 增加上下内边距 */
+            width: 100%;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>自动财务金额大写转换</h2>
+        <input type="number" id="numberInput" placeholder="请输入金额" oninput="convertToChinese()">
+        <div class="output" id="output"></div>
+    </div>
+
+    <script>
+        function convertToChinese() {
+            const num = document.getElementById('numberInput').value;
+            const output = document.getElementById('output');
+
+            if (!num || isNaN(num)) {
+                output.innerText = '请输入有效的数字';
+                return;
+            }
+
+            const units = ['元', '万', '亿', '兆'];
+            const smallUnits = ['角', '分'];
+            const digits = ['零', '壹', '贰', '叁', '肆', '伍', '陆', '柒', '捌', '玖'];
+            const positions = ['', '拾', '佰', '仟'];
+
+            function convertIntegerPart(integer) {
+                let result = '';
+                const len = integer.length;
+                let unitIndex = 0;
+
+                for (let i = 0; i < len; i++) {
+                    const digit = integer[len - 1 - i];
+                    const position = i % 4;
+                    const isZero = digit === '0';
+
+                    if (isZero && result.startsWith(digits[0])) {
+                        continue;
+                    }
+
+                    if (position === 0 && i > 0) {
+                        result = units[unitIndex++] + result;
+                    }
+
+                    result = (isZero ? digits[0] : digits[digit] + positions[position]) + result;
+                }
+
+                return result.replace(/零+/g, '零').replace(/零$/, '') + units[0];
+            }
+
+            function convertDecimalPart(decimal) {
+                return decimal.split('').map((digit, index) => digits[digit] + smallUnits[index]).join('');
+            }
+
+            const [integerPart, decimalPart] = num.split('.');
+            const integerInChinese = convertIntegerPart(integerPart);
+            const decimalInChinese = decimalPart ? convertDecimalPart(decimalPart) : '';
+
+            output.innerText = '人民币' + integerInChinese + decimalInChinese;
+        }
+    </script>
+
+</body>
+</html>
