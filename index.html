@@ -4,11 +4,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>自动财务金额大写转换</title>
+    <!-- Favicon and Apple Touch Icon -->
     <link rel="apple-touch-icon" sizes="180x180" href="https://wangwenzhi.eu.org/images/favicon_io/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="https://wangwenzhi.eu.org/images/favicon_io/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="https://wangwenzhi.eu.org/images/favicon_io/favicon-16x16.png">
     <link rel="manifest" href="https://wangwenzhi.eu.org/images/favicon_io/site.webmanifest">
-    <title>自动财务金额大写转换</title>
     <style>
         body {
             display: flex;
@@ -18,7 +19,7 @@
             height: 100vh;
             margin: 0;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f6f6f6;
+            background-color: #f6f6f6; /* 更改背景颜色 */
         }
         .container {
             background: #ffffff;
@@ -28,6 +29,7 @@
             text-align: center;
             width: 90%;
             max-width: 600px;
+            margin-top: 20px; /* 调整容器距离顶部的位置 */
         }
         h2 {
             margin-bottom: 20px;
@@ -61,6 +63,23 @@
             padding: 10px 0; /* 增加上下内边距 */
             width: 100%;
             box-sizing: border-box;
+        }
+        /* 媒体查询：优化手机端显示 */
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+                margin-top: 10px; /* 在小屏幕设备上调整容器位置 */
+            }
+            h2 {
+                font-size: 24px;
+            }
+            input {
+                font-size: 18px;
+                padding: 12px;
+            }
+            .output {
+                font-size: 20px;
+            }
         }
     </style>
 </head>
