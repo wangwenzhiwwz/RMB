@@ -109,7 +109,13 @@ function App() {
               aria-label="点击复制大写金额"
               className={`min-h-16 w-full break-all rounded-lg text-left text-xl font-bold leading-relaxed transition sm:text-2xl ${conversion.error ? 'text-red-600' : conversion.value ? 'cursor-pointer text-slate-900 hover:text-blue-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500' : 'cursor-default text-slate-400'}`}
             >
-              {conversion.error || conversion.value || '等待输入金额'}
+              {conversion.error || (conversion.value
+                ? conversion.value.split('').map((char, index) => (
+                    char === '零' && /0+$/.test(amount.trim().replace(/,/g, '').split('.')[1] ?? '')
+                      ? <span key={index} className="decoration-red-500 decoration-2 underline decoration-overline">{char}</span>
+                      : char
+                  ))
+                : '等待输入金额')}
             </button>
             {conversion.value && (
               <p className="mt-2 text-sm text-slate-500">
