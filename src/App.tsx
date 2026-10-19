@@ -110,15 +110,20 @@ function App() {
               className={`min-h-16 w-full break-all rounded-lg text-left text-xl font-bold leading-relaxed transition sm:text-2xl ${conversion.error ? 'text-red-600' : conversion.value ? 'cursor-pointer text-slate-900 hover:text-blue-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500' : 'cursor-default text-slate-400'}`}
             >
               {conversion.error || (conversion.value
-                ? conversion.value.split('').map((char, index) => {
-                    const decimal = (amount.trim().replace(/,/g, '').split('.')[1] ?? '').padEnd(2, '0').slice(0, 2);
-                    const isDecimalZero = index >= conversion.value.length - 4 && char === '零' &&
-                      ((index === conversion.value.length - 4 && decimal[0] === '0') ||
-                       (index === conversion.value.length - 2 && decimal[1] === '0'));
-                    return isDecimalZero
-                      ? <span key={index} className="relative inline-block before:pointer-events-none before:absolute before:left-0 before:right-0 before:top-[0.08em] before:h-[2px] before:bg-red-500">{char}</span>
-                      : char;
-                  })
+                ? (() => {
+                    const chars = conversion.value.split('');
+                    const financialDigits = '壹贰叁肆伍陆柒捌玖';
+                    const lastNonZeroDigit = chars.reduce(
+                      (last, char, index) => financialDigits.includes(char) ? index : last,
+                      -1,
+                    );
+                    const hasTrailingZeros = lastNonZeroDigit >= 0 && chars.slice(lastNonZeroDigit + 1).includes('零');
+                    return chars.map((char, index) =>
+                      hasTrailingZeros && char === '零' && index > lastNonZeroDigit
+                        ? <span key={index} className="relative inline-block before:pointer-events-none before:absolute before:left-0 before:right-0 before:top-[0.08em] before:h-[2px] before:bg-red-500">{char}</span>
+                        : char,
+                    );
+                  })()
                 : '等待输入金额')}
             </button>
             {conversion.value && (
