@@ -121,7 +121,7 @@ function App() {
                     return chars.map((char, index) => {
                       const markZero = char === '零' && index > lastNonZeroDigit;
                       return markZero
-                        ? <span key={index} className="inline-block" style={{ backgroundImage: 'linear-gradient(transparent calc(50% - 1px), #ef4444 calc(50% - 1px), #ef4444 calc(50% + 1px), transparent calc(50% + 1px))' }}>{char}</span>
+                        ? <span key={index} style={{ textDecorationLine: 'line-through', textDecorationColor: '#ef4444', textDecorationThickness: '2px', textDecorationSkipInk: 'none' }}>{char}</span>
                         : char;
                     });
                   })()
