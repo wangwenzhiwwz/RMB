@@ -1,65 +1,80 @@
-// Convert numbers to Chinese characters with explicit units
-export function numberToChinese(num: number | string): string {
-  const digits = ['零', '壹', '贰', '叁', '肆', '伍', '陆', '柒', '捌', '玖'];
-  const units = ['', '拾', '佰', '仟', '万', '拾', '佰', '仟', '亿', '拾', '佰', '仟'];
-  
-  let str = typeof num === 'string' ? num : num.toString();
-  let result = '';
-  
-  // Handle special case for 0
-  if (str === '0') return '零';
-  
-  for (let i = 0; i < str.length; i++) {
-    const digit = parseInt(str[i]);
-    const position = str.length - 1 - i;
-    
+// 人民币金额大写转换：固定显示“圆、角、分”，不追加“整”。
+const DIGITS = ['零', '壹', '贰', '叁', '肆', '伍', '陆', '柒', '捌', '玖'];
+const SMALL_UNITS = ['', '拾', '佰', '仟'];
+const GROUP_UNITS = ['', '万', '亿', '兆'];
+
+function convertGroup(group: string): string {
+  let output = '';
+  let pendingZero = false;
+
+  for (let i = 0; i < 4; i++) {
+    const digit = Number(group[i] || '0');
+    const unitIndex = 3 - i;
+
     if (digit === 0) {
-      // Add 零 and the unit for zero positions
-      result += '零' + units[position];
-    } else {
-      result += digits[digit] + units[position];
+      if (output) pendingZero = true;
+      continue;
     }
+
+    if (pendingZero) output += '零';
+    output += DIGITS[digit] + SMALL_UNITS[unitIndex];
+    pendingZero = false;
   }
-  
-  // Clean up repeated units and zeros
-  return result
-    .replace(/(零[拾佰仟])+/g, '零')  // Combine consecutive zero units
-    .replace(/零+/g, '零')           // Combine consecutive zeros
-    .replace(/零+$/, '')             // Remove trailing zeros
-    .replace(/零万/g, '万')          // Clean up zero before 万
-    .replace(/零亿/g, '亿');         // Clean up zero before 亿
+
+  return output;
 }
 
-// Convert currency amount to Chinese format with explicit units
-export function amountToChinese(amount: number): string {
-  if (amount === 0) return '零圆整';
-  
-  const integerPart = Math.floor(amount);
-  const decimalPart = Math.round((amount - integerPart) * 100);
-  
-  let result = '';
-  
-  // Handle integer part
-  if (integerPart === 0) {
-    result = '零圆';
-  } else {
-    result = numberToChinese(integerPart) + '圆';
-  }
-  
-  // Handle decimal part with explicit units
-  if (decimalPart > 0) {
-    const jiao = Math.floor(decimalPart / 10);
-    const fen = decimalPart % 10;
-    
-    if (jiao === 0) {
-      result += '零角' + (fen > 0 ? numberToChinese(fen) + '分' : '零分');
-    } else {
-      result += numberToChinese(jiao) + '角';
-      result += fen > 0 ? numberToChinese(fen) + '分' : '零分';
+function integerToChinese(value: string): string {
+  const normalized = value.replace(/^0+(?=\\d)/, '') || '0';
+  if (normalized === '0') return '零';
+  if (normalized.length > 16) throw new Error('整数部分最多支持 16 位');
+
+  const padded = normalized.padStart(Math.ceil(normalized.length / 4) * 4, '0');
+  const groups = padded.match(/\\d{4}/g) || [];
+  let output = '';
+  let zeroGroupPending = false;
+
+  groups.forEach((group, index) => {
+    const groupValue = Number(group);
+    const unit = GROUP_UNITS[groups.length - index - 1];
+
+    if (groupValue === 0) {
+      if (output) zeroGroupPending = true;
+      return;
     }
-  } else {
-    result += '零角零分整';
+
+    if (output && (zeroGroupPending || groupValue < 1000)) output += '零';
+    output += convertGroup(group) + unit;
+    zeroGroupPending = false;
+  });
+
+  return output;
+}
+
+export function numberToChinese(num: number | string): string {
+  const text = String(num);
+  if (!/^\\d+$/.test(text)) throw new Error('请输入有效整数');
+  return integerToChinese(text);
+}
+
+export function amountToChinese(amount: number | string): string {
+  let text = String(amount).trim().replace(/,/g, '');
+  if (!text) return '';
+  if (!/^(?:\\d+\\.?\\d*|\\.\\d+)$/.test(text)) {
+    throw new Error('请输入有效金额，仅支持数字和小数点');
   }
-  
-  return result;
+  if (text.startsWith('.')) text = '0' + text;
+
+  const parts = text.split('.');
+  const integerPart = parts[0].replace(/^0+(?=\\d)/, '') || '0';
+  const decimalInput = parts[1] || '';
+
+  if (decimalInput.length > 2) throw new Error('小数部分最多输入 2 位');
+  if (integerPart.length > 16) throw new Error('整数部分最多支持 16 位');
+
+  const decimalPart = decimalInput.padEnd(2, '0');
+  const jiao = Number(decimalPart[0]);
+  const fen = Number(decimalPart[1]);
+
+  return integerToChinese(integerPart) + '圆' + DIGITS[jiao] + '角' + DIGITS[fen] + '分';
 }
