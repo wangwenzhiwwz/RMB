@@ -1,10 +1,10 @@
-// 人民币金额大写转换：逐位保留数字（包括每个零），固定显示“圆、角、分”，不追加“整”。
+// 人民币金额大写转换：逐位保留每个数字及对应单位，固定显示“圆、角、分”，不追加“整”。
 const DIGITS = ['零', '壹', '贰', '叁', '肆', '伍', '陆', '柒', '捌', '玖'];
 const SMALL_UNITS = ['', '拾', '佰', '仟'];
 const GROUP_UNITS = ['', '万', '亿', '兆'];
 
 function integerToChinese(value: string): string {
-  const normalized = value.replace(/^0+(?=\\d)/, '') || '0';
+  const normalized = value.replace(/^0+(?=\d)/, '') || '0';
   if (normalized.length > 16) throw new Error('整数部分最多支持 16 位');
 
   return normalized.split('').map((char, index) => {
@@ -19,20 +19,20 @@ function integerToChinese(value: string): string {
 
 export function numberToChinese(num: number | string): string {
   const text = String(num);
-  if (!/^\\d+$/.test(text)) throw new Error('请输入有效整数');
+  if (!/^\d+$/.test(text)) throw new Error('请输入有效整数');
   return integerToChinese(text);
 }
 
 export function amountToChinese(amount: number | string): string {
   let text = String(amount).trim().replace(/,/g, '');
   if (!text) return '';
-  if (!/^(?:\\d+\\.?\\d*|\\.\\d+)$/.test(text)) {
+  if (!/^(?:\d+\.?\d*|\.\d+)$/.test(text)) {
     throw new Error('请输入有效金额，仅支持数字和小数点');
   }
   if (text.startsWith('.')) text = '0' + text;
 
   const parts = text.split('.');
-  const integerPart = parts[0].replace(/^0+(?=\\d)/, '') || '0';
+  const integerPart = parts[0].replace(/^0+(?=\d)/, '') || '0';
   const decimalInput = parts[1] || '';
 
   if (decimalInput.length > 2) throw new Error('小数部分最多输入 2 位');
