@@ -112,7 +112,7 @@ function App() {
               {conversion.error || (conversion.value
                 ? conversion.value.split('').map((char, index) => (
                     char === '零' && /0+$/.test(amount.trim().replace(/,/g, '').split('.')[1] ?? '')
-                      ? <span key={index} className="decoration-red-500 decoration-2 underline decoration-overline">{char}</span>
+                      ? <span key={index} className="decoration-red-500 decoration-2 decoration-overline">{char}</span>
                       : char
                   ))
                 : '等待输入金额')}
