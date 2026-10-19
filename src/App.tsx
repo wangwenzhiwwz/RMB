@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
 import { CircleDollarSign, Copy, RotateCcw } from 'lucide-react';
 import { NumberInput } from './components/NumberInput';
 import { amountToChinese } from './utils/numberConverter';
