@@ -120,7 +120,7 @@ function App() {
                     const hasTrailingZeros = lastNonZeroDigit >= 0 && chars.slice(lastNonZeroDigit + 1).includes('零');
                     return chars.map((char, index) =>
                       hasTrailingZeros && char === '零' && index > lastNonZeroDigit
-                        ? <span key={index} className="relative inline-block before:pointer-events-none before:absolute before:left-0 before:right-0 before:top-[0.08em] before:h-[2px] before:bg-red-500">{char}</span>
+                        ? <span key={index} className="relative inline-block before:pointer-events-none before:absolute before:left-0 before:right-0 before:top-[0.48em] before:h-[2px] before:bg-red-500">{char}</span>
                         : char,
                     );
                   })()
