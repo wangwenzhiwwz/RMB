@@ -102,7 +102,7 @@ function App() {
               <h2 className="text-base font-semibold text-blue-900">报销单大写金额</h2>
               {conversion.value && <span className="text-sm text-blue-700">转换完成</span>}
             </div>
-            <p className={\`min-h-16 break-all text-xl font-bold leading-relaxed sm:text-2xl \${conversion.error ? 'text-red-600' : conversion.value ? 'text-slate-900' : 'text-slate-400'}\`}>
+            <p className={`min-h-16 break-all text-xl font-bold leading-relaxed sm:text-2xl ${conversion.error ? 'text-red-600' : conversion.value ? 'text-slate-900' : 'text-slate-400'}`}>
               {conversion.error || conversion.value || '等待输入金额'}
             </p>
             <button
