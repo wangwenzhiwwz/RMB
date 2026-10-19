@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react';
-import { CircleDollarSign, ClipboardPaste, Copy, RotateCcw } from 'lucide-react';
+import { CircleDollarSign, ClipboardPaste, RotateCcw } from 'lucide-react';
 import { amountToChinese } from './utils/numberConverter';
 
 function App() {
@@ -102,18 +102,20 @@ function App() {
               <h2 className="text-base font-semibold text-blue-900">报销单大写金额</h2>
               {conversion.value && <span className="text-sm text-blue-700">转换完成</span>}
             </div>
-            <p className={`min-h-16 break-all text-xl font-bold leading-relaxed sm:text-2xl ${conversion.error ? 'text-red-600' : conversion.value ? 'text-slate-900' : 'text-slate-400'}`}>
-              {conversion.error || conversion.value || '等待输入金额'}
-            </p>
             <button
               type="button"
               onClick={copyResult}
               disabled={!conversion.value}
-              className="mt-4 inline-flex h-14 w-full items-center justify-center gap-2 rounded-xl bg-blue-600 px-4 text-base font-semibold text-white transition hover:bg-blue-700 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-blue-500/20 disabled:cursor-not-allowed disabled:bg-slate-300"
+              aria-label="点击复制大写金额"
+              className={`min-h-16 w-full break-all rounded-lg text-left text-xl font-bold leading-relaxed transition sm:text-2xl ${conversion.error ? 'text-red-600' : conversion.value ? 'cursor-pointer text-slate-900 hover:text-blue-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500' : 'cursor-default text-slate-400'}`}
             >
-              <Copy size={19} aria-hidden="true" />
-              {copied ? '已复制，可粘贴到报销单' : '复制大写金额'}
+              {conversion.error || conversion.value || '等待输入金额'}
             </button>
+            {conversion.value && (
+              <p className="mt-2 text-sm text-slate-500">
+                {copied ? '已复制，可直接粘贴到报销单' : '点击大写金额文字即可复制'}
+              </p>
+            )}
           </div>
 
           <div className="mt-4 flex min-h-9 items-center justify-between gap-3">
