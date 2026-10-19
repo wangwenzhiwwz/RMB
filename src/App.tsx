@@ -117,12 +117,13 @@ function App() {
                       (last, char, index) => financialDigits.includes(char) ? index : last,
                       -1,
                     );
-                    const hasTrailingZeros = lastNonZeroDigit >= 0 && chars.slice(lastNonZeroDigit + 1).includes('零');
-                    return chars.map((char, index) =>
-                      hasTrailingZeros && char === '零' && index > lastNonZeroDigit
-                        ? <span key={index} className="relative inline-block before:pointer-events-none before:absolute before:left-0 before:right-0 before:top-1/2 before:-translate-y-1/2 before:h-[2px] before:bg-red-500">{char}</span>
-                        : char,
-                    );
+                    // 最后一个非零大写数字之后，所有“零”都画红线，包括佰、拾、圆、角、分前的零。
+                    return chars.map((char, index) => {
+                      const markZero = char === '零' && index > lastNonZeroDigit;
+                      return markZero
+                        ? <span key={index} className="inline-block" style={{ backgroundImage: 'linear-gradient(transparent calc(50% - 1px), #ef4444 calc(50% - 1px), #ef4444 calc(50% + 1px), transparent calc(50% + 1px))' }}>{char}</span>
+                        : char;
+                    });
                   })()
                 : '等待输入金额')}
             </button>
