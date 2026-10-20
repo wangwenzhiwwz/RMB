@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react';
-import { CircleDollarSign, ClipboardPaste, RotateCcw, Check } from 'lucide-react';
+import { ClipboardPaste, RotateCcw, Check, Copy } from 'lucide-react';
 import { amountToChinese } from './utils/numberConverter';
 
 function App() {
@@ -56,21 +56,17 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 px-3 py-5 text-slate-900 transition-colors dark:bg-slate-950 dark:text-slate-100 sm:py-14">
-      <main className="mx-auto w-full max-w-3xl">
-        <header className="mb-6 text-center sm:mb-8">
-          <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-600 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-300">
-            <CircleDollarSign className="h-5 w-5" aria-hidden="true" />
-            <span>轻量 · 快速 · 本地处理</span>
-          </div>
-          <h1 className="text-2xl font-extrabold tracking-tight text-slate-900 dark:text-white sm:text-4xl">人民币金额大写</h1>
-          <p className="mt-2 text-xs text-slate-500 sm:text-sm dark:text-slate-400 sm:mt-3 sm:text-base">快速填写报销单 · 支持剪贴板粘贴</p>
+    <div className="min-h-screen bg-slate-50 px-4 py-6 text-slate-900 transition-colors dark:bg-slate-950 dark:text-slate-100 sm:py-12">
+      <main className="mx-auto w-full max-w-xl">
+        <header className="mb-6 text-left sm:mb-8">
+          <h1 className="text-2xl font-bold tracking-tight text-slate-900 dark:text-white sm:text-3xl">人民币金额大写</h1>
+          <p className="mt-2 text-sm text-slate-500 dark:text-slate-400">输入金额，自动转换为财务大写格式</p>
         </header>
 
-        <section className="rounded-3xl border border-slate-200 bg-white p-4 dark:border-slate-800 dark:bg-slate-900 sm:p-8">
-          <label className="mb-3 block text-sm font-bold tracking-wide text-slate-700 dark:text-slate-200" htmlFor="amount">报销金额（小写）</label>
+        <section className="rounded-2xl border border-slate-200 bg-white p-4 dark:border-slate-800 dark:bg-slate-900 sm:p-6">
+          <label className="mb-2 block text-sm font-semibold text-slate-700 dark:text-slate-200" htmlFor="amount">报销金额（小写）</label>
           <div className="flex items-stretch gap-2 sm:gap-3">
-            <div className="flex min-w-0 flex-1 items-center rounded-2xl border border-slate-200 bg-white transition focus-within:border-blue-500 focus-within:ring-4 focus-within:ring-blue-500/15 dark:border-slate-700 dark:bg-slate-950">
+            <div className="flex min-w-0 flex-1 items-center rounded-xl border border-slate-300 bg-white transition focus-within:border-blue-500 focus-within:ring-2 focus-within:ring-blue-500/15 dark:border-slate-700 dark:bg-slate-950">
               <span className="select-none pl-4 text-xl font-semibold text-slate-400" aria-hidden="true">¥</span>
               <input
                 id="amount"
@@ -91,13 +87,13 @@ function App() {
                 }}
                 placeholder="输入或粘贴金额，例如 3010.01"
                 aria-describedby="amount-help"
-                className="h-14 min-w-0 w-full rounded-2xl border-0 bg-transparent px-2 text-lg font-semibold text-slate-900 outline-none ring-0 placeholder:text-xs placeholder:font-normal placeholder:text-slate-400 focus:outline-none focus:ring-0 dark:text-white dark:placeholder:text-slate-600 sm:h-16 sm:px-3 sm:text-2xl sm:placeholder:text-base"
+                className="h-14 min-w-0 w-full rounded-xl border-0 bg-transparent px-2 text-lg font-semibold text-slate-900 outline-none ring-0 placeholder:text-xs placeholder:font-normal placeholder:text-slate-400 focus:outline-none focus:ring-0 dark:text-white dark:placeholder:text-slate-600 sm:h-16 sm:px-3 sm:text-2xl sm:placeholder:text-base"
               />
             </div>
             <button
               type="button"
               onClick={pasteAmount}
-              className="inline-flex min-h-14 shrink-0 items-center justify-center gap-1.5 rounded-2xl bg-slate-100 px-3 text-sm font-bold text-slate-700 transition hover:bg-blue-100 hover:text-blue-800 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-blue-500/20 dark:bg-slate-800 dark:text-slate-200 dark:hover:bg-slate-700 dark:hover:text-white sm:min-h-16 sm:gap-2 sm:px-5 sm:text-base"
+              className="inline-flex min-h-14 shrink-0 items-center justify-center gap-1.5 rounded-xl bg-slate-100 px-3 text-sm font-semibold text-slate-700 transition hover:bg-blue-100 hover:text-blue-800 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-blue-500/20 dark:bg-slate-800 dark:text-slate-200 dark:hover:bg-slate-700 dark:hover:text-white sm:min-h-16 sm:gap-2 sm:px-5 sm:text-base"
               aria-label="从剪贴板粘贴金额"
             >
               <ClipboardPaste size={20} aria-hidden="true" />
@@ -106,9 +102,9 @@ function App() {
           </div>
           <p id="amount-help" className="mt-3 text-xs leading-relaxed text-slate-500 dark:text-slate-400">可直接输入或使用 Ctrl+V 粘贴；支持最多 16 位整数、2 位小数。</p>
 
-          <div className="mt-5 rounded-2xl border border-slate-200 bg-slate-50 p-4 dark:border-slate-700 dark:bg-slate-950 sm:mt-6 sm:p-6" aria-live="polite">
+          <div className="mt-5 rounded-xl border border-slate-200 bg-slate-50 p-4 dark:border-slate-700 dark:bg-slate-950 sm:p-5" aria-live="polite">
             <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
-              <h2 className="text-sm font-bold tracking-wide text-blue-900 dark:text-blue-200">报销单大写金额</h2>
+              <h2 className="text-sm font-semibold text-slate-600 dark:text-slate-300">报销单大写金额</h2>
               {conversion.value && <span className="inline-flex items-center gap-1 rounded-full border border-emerald-200 bg-emerald-50 px-3 py-1 text-xs font-bold text-emerald-700 dark:border-emerald-400/20 dark:bg-emerald-400/10 dark:text-emerald-300"><Check size={13} aria-hidden="true" />转换完成</span>}
             </div>
             <button
@@ -116,7 +112,7 @@ function App() {
               onClick={copyResult}
               disabled={!conversion.value}
               aria-label="点击复制大写金额"
-              className={`min-h-14 w-full break-words rounded-xl py-1 text-left text-lg font-bold leading-relaxed transition sm:min-h-16 sm:text-2xl ${conversion.error ? 'text-red-600' : conversion.value ? 'cursor-pointer text-slate-900 hover:text-blue-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 dark:text-slate-50 dark:hover:text-blue-300' : 'cursor-default text-slate-400'}`}
+              className={`min-h-14 w-full break-words rounded-lg py-1 text-left text-lg font-semibold leading-relaxed transition sm:min-h-16 sm:text-xl ${conversion.error ? 'text-red-600' : conversion.value ? 'cursor-pointer text-slate-900 hover:text-blue-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 dark:text-slate-50 dark:hover:text-blue-300' : 'cursor-default text-slate-400'}`}
             >
               {conversion.error || (conversion.value
                 ? (() => {
@@ -138,7 +134,7 @@ function App() {
             </button>
             {conversion.value && (
               <p className="mt-2 text-sm text-slate-500">
-                {copied ? '已复制，可直接粘贴到报销单' : '点击大写金额文字即可复制'}
+                {copied ? '已复制到剪贴板' : '点击金额即可复制'}
               </p>
             )}
           </div>
