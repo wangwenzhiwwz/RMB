@@ -117,7 +117,7 @@ function App() {
               onClick={copyResult}
               disabled={!conversion.value || Boolean(conversion.error)}
               aria-label="点击复制大写金额"
-              className={`min-h-28 w-full rounded-2xl p-4 text-left text-xl font-semibold leading-relaxed transition sm:min-h-32 sm:p-5 sm:text-2xl ${conversion.error ? 'bg-[#fff2f4] text-[#d70015] dark:bg-[#3a171b] dark:text-[#ff6961]' : conversion.value ? 'cursor-pointer bg-[#f5f5f7] text-[#1d1d1f] hover:bg-[#ededf0] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#06c] dark:bg-[#2c2c2e] dark:text-white dark:hover:bg-[#38383a]' : 'cursor-default bg-[#f5f5f7] text-[#86868b] dark:bg-[#2c2c2e] dark:text-[#a1a1a6]'}`}
+              className={`min-h-14 w-full rounded-full px-5 py-3 text-left text-lg font-semibold leading-relaxed transition sm:min-h-16 sm:px-6 sm:text-xl ${conversion.error ? 'bg-[#fff2f4] text-[#d70015] dark:bg-[#3a171b] dark:text-[#ff6961]' : conversion.value ? 'cursor-pointer bg-[#f5f5f7] text-[#1d1d1f] hover:bg-[#ededf0] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#06c] dark:bg-[#2c2c2e] dark:text-white dark:hover:bg-[#38383a]' : 'cursor-default bg-[#f5f5f7] text-[#86868b] dark:bg-[#2c2c2e] dark:text-[#a1a1a6]'}`}
             >
               {conversion.error || (conversion.value
                 ? (() => {
