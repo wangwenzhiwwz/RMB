@@ -91,7 +91,7 @@ function App() {
             <button
               type="button"
               onClick={pasteAmount}
-              className="inline-flex h-11 shrink-0 items-center justify-center gap-2 rounded-full bg-[#0071e3] px-4 text-sm font-semibold text-white transition hover:bg-[#0077ed] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#06c]/25 sm:h-12"
+              className="inline-flex h-11 shrink-0 items-center justify-center gap-2 rounded-2xl bg-[#0071e3] px-4 text-sm font-semibold text-white transition hover:bg-[#0077ed] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#06c]/25 sm:h-12"
               aria-label="从剪贴板粘贴金额"
             >
               <ClipboardPaste size={17} aria-hidden="true" />
