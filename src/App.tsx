@@ -27,13 +27,13 @@ function App() {
     try {
       const text = (await navigator.clipboard.readText()).trim().replace(/,/g, '');
       if (!text) {
-        setNotice('剪贴板为空，请先复制报销金额');
+        setNotice('剪贴板为空');
         return;
       }
       updateAmount(text);
-      setNotice('已粘贴剪贴板内容');
+      setNotice('');
     } catch {
-      setNotice('无法直接读取剪贴板，请点击输入框后按 Ctrl+V');
+      setNotice('请在输入框中手动粘贴');
     }
   };
 
@@ -42,9 +42,9 @@ function App() {
     try {
       await navigator.clipboard.writeText(conversion.value);
       setCopied(true);
-      setNotice('大写金额已复制，可直接粘贴到报销单');
+      setNotice('已复制');
     } catch {
-      setNotice('复制失败，请手动选中转换结果复制');
+      setNotice('复制失败，请手动复制');
       setCopied(false);
     }
   };
@@ -60,7 +60,7 @@ function App() {
       <main className="mx-auto w-full max-w-xl">
         <header className="mb-7 text-center sm:mb-9">
           <h1 className="text-3xl font-semibold tracking-tight sm:text-4xl">人民币金额大写</h1>
-          <p className="mx-auto mt-2 max-w-md text-sm text-[#6e6e73] dark:text-[#a1a1a6] sm:text-base">把数字金额，快速转换成规范的财务大写。</p>
+          <p className="mx-auto mt-2 max-w-md text-sm text-[#6e6e73] dark:text-[#a1a1a6] sm:text-base">快速转换为财务大写。</p>
         </header>
 
         <section className="overflow-hidden rounded-2xl border border-[#e5e5ea] bg-white p-4 dark:border-[#38383a] dark:bg-[#1c1c1e] sm:p-6">
@@ -98,7 +98,7 @@ function App() {
               <span>粘贴</span>
             </button>
           </div>
-          <p id="amount-help" className="mt-3 px-1 text-xs leading-5 text-[#86868b] dark:text-[#a1a1a6]">支持最多 16 位整数、2 位小数。也可以直接使用 Ctrl + V 粘贴。</p>
+          <p id="amount-help" className="mt-3 px-1 text-xs leading-5 text-[#86868b] dark:text-[#a1a1a6]">最多 16 位整数，支持 2 位小数。</p>
 
           <div className="my-5 h-px bg-[#e8e8ed] dark:bg-[#38383a]" />
 
@@ -134,11 +134,11 @@ function App() {
                         : char;
                     });
                   })()
-                : '金额大写将显示在这里')}
+                : '')}
             </button>
             <div className="mt-4 flex min-h-10 flex-wrap items-center justify-between gap-3">
               <p className="text-sm text-[#86868b] dark:text-[#a1a1a6]" role="status">
-                {notice || (conversion.value ? (copied ? '已复制到剪贴板' : '点击结果区域即可复制') : '金额仅在本地浏览器处理')}
+                {notice || (conversion.value ? (copied ? '已复制到剪贴板' : '点击结果区域即可复制') : '')}
               </p>
               <button
                 type="button"
