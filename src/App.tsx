@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react';
-import { CircleDollarSign, ClipboardPaste, RotateCcw, Check, Sparkles } from 'lucide-react';
+import { CircleDollarSign, ClipboardPaste, RotateCcw, Check } from 'lucide-react';
 import { amountToChinese } from './utils/numberConverter';
 
 function App() {
@@ -81,6 +81,14 @@ function App() {
                 spellCheck={false}
                 value={amount}
                 onChange={(event) => updateAmount(event.target.value)}
+                onKeyDown={(event) => {
+                  if ((event.ctrlKey || event.metaKey) && event.key === "Enter") {
+                    event.preventDefault();
+                    void copyResult();
+                  } else if (event.key === "Escape") {
+                    clear();
+                  }
+                }}
                 placeholder="输入或粘贴金额，例如 3010.01"
                 aria-describedby="amount-help"
                 className="h-14 min-w-0 w-full rounded-2xl border-0 bg-transparent px-2 text-lg font-semibold text-slate-900 outline-none ring-0 placeholder:text-xs placeholder:font-normal placeholder:text-slate-400 focus:outline-none focus:ring-0 dark:text-white dark:placeholder:text-slate-600 sm:h-16 sm:px-3 sm:text-2xl sm:placeholder:text-base"
