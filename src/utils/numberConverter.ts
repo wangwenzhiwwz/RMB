@@ -68,7 +68,7 @@ export function numberToChinese(num: number | string): string {
 export function amountToChinese(amount: number | string): string {
   let text = String(amount).trim().replace(/,/g, '');
   if (!text) return '';
-  if (!/^(?:\d+\\.?\d*|\\.\d+)$/.test(text)) {
+  if (!/^(?:\d+\.?\d*|\.\d+)$/.test(text)) {
     throw new Error('请输入有效金额，仅支持数字和小数点');
   }
   if (text.startsWith('.')) text = '0' + text;
