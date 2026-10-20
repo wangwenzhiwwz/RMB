@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react';
-import { ClipboardPaste, RotateCcw, Check, Copy } from 'lucide-react';
+import { ClipboardPaste, RotateCcw, Check } from 'lucide-react';
 import { amountToChinese } from './utils/numberConverter';
 
 function App() {
