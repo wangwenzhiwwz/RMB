@@ -65,7 +65,7 @@ function App() {
 
         <section className="overflow-hidden rounded-2xl border border-[#e5e5ea] bg-white p-4 dark:border-[#38383a] dark:bg-[#1c1c1e] sm:p-6">
           <label className="mb-3 block text-sm font-medium text-[#6e6e73] dark:text-[#a1a1a6]" htmlFor="amount">输入金额（人民币）</label>
-          <div className="flex items-center gap-3 rounded-2xl border border-[#d2d2d7] bg-[#fbfbfd] p-2 transition focus-within:border-[#06c] focus-within:ring-4 focus-within:ring-[#06c]/10 dark:border-[#48484a] dark:bg-[#2c2c2e]">
+          <div className="flex items-center gap-3 rounded-full border border-[#d2d2d7] bg-[#fbfbfd] p-2 transition focus-within:border-[#06c] focus-within:ring-4 focus-within:ring-[#06c]/10 dark:border-[#48484a] dark:bg-[#2c2c2e]">
             <span className="pl-3 text-2xl font-medium text-[#86868b] sm:text-3xl" aria-hidden="true">¥</span>
             <input
               id="amount"
@@ -91,7 +91,7 @@ function App() {
             <button
               type="button"
               onClick={pasteAmount}
-              className="inline-flex h-11 shrink-0 items-center justify-center gap-2 rounded-xl bg-[#0071e3] px-4 text-sm font-semibold text-white transition hover:bg-[#0077ed] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#06c]/25 sm:h-12"
+              className="inline-flex h-11 shrink-0 items-center justify-center gap-2 rounded-full bg-[#0071e3] px-4 text-sm font-semibold text-white transition hover:bg-[#0077ed] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#06c]/25 sm:h-12"
               aria-label="从剪贴板粘贴金额"
             >
               <ClipboardPaste size={17} aria-hidden="true" />
