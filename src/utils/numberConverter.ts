@@ -27,7 +27,7 @@ function convertFourDigits(value: number): string {
 }
 
 function integerToChinese(value: string): string {
-  const normalized = value.replace(/^0+(?=\\d)/, '') || '0';
+  const normalized = value.replace(/^0+(?=\d)/, '') || '0';
   if (normalized.length > 16) throw new Error('整数部分最多支持 16 位');
   if (/^0+$/.test(normalized)) return DIGITS[0];
 
@@ -61,20 +61,20 @@ function integerToChinese(value: string): string {
 
 export function numberToChinese(num: number | string): string {
   const text = String(num);
-  if (!/^\\d+$/.test(text)) throw new Error('请输入有效整数');
+  if (!/^\d+$/.test(text)) throw new Error('请输入有效整数');
   return integerToChinese(text);
 }
 
 export function amountToChinese(amount: number | string): string {
   let text = String(amount).trim().replace(/,/g, '');
   if (!text) return '';
-  if (!/^(?:\\d+\\.?\\d*|\\.\\d+)$/.test(text)) {
+  if (!/^(?:\d+\\.?\d*|\\.\d+)$/.test(text)) {
     throw new Error('请输入有效金额，仅支持数字和小数点');
   }
   if (text.startsWith('.')) text = '0' + text;
 
   const parts = text.split('.');
-  const integerPart = parts[0].replace(/^0+(?=\\d)/, '') || '0';
+  const integerPart = parts[0].replace(/^0+(?=\d)/, '') || '0';
   const decimalInput = parts[1] || '';
 
   if (decimalInput.length > 2) throw new Error('小数部分最多输入 2 位');
