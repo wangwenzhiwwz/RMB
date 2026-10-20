@@ -56,15 +56,14 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[#f5f5f7] px-4 py-10 text-[#1d1d1f] transition-colors dark:bg-[#000] dark:text-[#f5f5f7] sm:py-16">
-      <main className="mx-auto w-full max-w-2xl">
-        <header className="mb-9 text-center sm:mb-12">
-          <p className="mb-3 text-sm font-semibold tracking-wide text-[#06c] dark:text-[#2997ff]">FINANCE TOOL · RMB</p>
-          <h1 className="text-3xl font-semibold tracking-tight sm:text-5xl">人民币金额大写</h1>
-          <p className="mx-auto mt-4 max-w-md text-base leading-7 text-[#6e6e73] dark:text-[#a1a1a6] sm:text-lg">把数字金额，快速转换成规范的财务大写。</p>
+    <div className="min-h-screen bg-[#f5f5f7] px-4 py-8 text-[#1d1d1f] transition-colors dark:bg-[#000] dark:text-[#f5f5f7] sm:py-12">
+      <main className="mx-auto w-full max-w-xl">
+        <header className="mb-7 text-center sm:mb-9">
+          <h1 className="text-3xl font-semibold tracking-tight sm:text-4xl">人民币金额大写</h1>
+          <p className="mx-auto mt-2 max-w-md text-sm text-[#6e6e73] dark:text-[#a1a1a6] sm:text-base">把数字金额，快速转换成规范的财务大写。</p>
         </header>
 
-        <section className="overflow-hidden rounded-[28px] border border-black/[0.04] bg-white p-5 shadow-[0_8px_32px_rgba(0,0,0,0.04)] dark:border-white/10 dark:bg-[#1c1c1e] sm:p-8">
+        <section className="overflow-hidden rounded-2xl border border-[#e5e5ea] bg-white p-4 dark:border-[#38383a] dark:bg-[#1c1c1e] sm:p-6">
           <label className="mb-3 block text-sm font-medium text-[#6e6e73] dark:text-[#a1a1a6]" htmlFor="amount">输入金额（人民币）</label>
           <div className="flex items-center gap-3 rounded-2xl border border-[#d2d2d7] bg-[#fbfbfd] p-2 transition focus-within:border-[#06c] focus-within:ring-4 focus-within:ring-[#06c]/10 dark:border-[#48484a] dark:bg-[#2c2c2e]">
             <span className="pl-3 text-2xl font-medium text-[#86868b] sm:text-3xl" aria-hidden="true">¥</span>
@@ -101,7 +100,7 @@ function App() {
           </div>
           <p id="amount-help" className="mt-3 px-1 text-xs leading-5 text-[#86868b] dark:text-[#a1a1a6]">支持最多 16 位整数、2 位小数。也可以直接使用 Ctrl + V 粘贴。</p>
 
-          <div className="my-7 h-px bg-[#e8e8ed] dark:bg-[#38383a]" />
+          <div className="my-5 h-px bg-[#e8e8ed] dark:bg-[#38383a]" />
 
           <div aria-live="polite">
             <div className="mb-3 flex items-center justify-between gap-3">
@@ -153,7 +152,7 @@ function App() {
           </div>
         </section>
 
-        <footer className="mt-6 text-center text-xs leading-5 text-[#86868b] dark:text-[#6e6e73]">
+        <footer className="mt-4 text-center text-xs leading-5 text-[#86868b] dark:text-[#6e6e73]">
           为日常报销与财务填写设计 · 无需上传数据
         </footer>
       </main>
