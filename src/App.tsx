@@ -56,63 +56,69 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 px-4 py-6 text-slate-900 transition-colors dark:bg-slate-950 dark:text-slate-100 sm:py-12">
-      <main className="mx-auto w-full max-w-xl">
-        <header className="mb-6 text-left sm:mb-8">
-          <h1 className="text-2xl font-bold tracking-tight text-slate-900 dark:text-white sm:text-3xl">人民币金额大写</h1>
-          <p className="mt-2 text-sm text-slate-500 dark:text-slate-400">输入金额，自动转换为财务大写格式</p>
+    <div className="min-h-screen bg-[#f5f5f7] px-4 py-10 text-[#1d1d1f] transition-colors dark:bg-[#000] dark:text-[#f5f5f7] sm:py-16">
+      <main className="mx-auto w-full max-w-2xl">
+        <header className="mb-9 text-center sm:mb-12">
+          <p className="mb-3 text-sm font-semibold tracking-wide text-[#06c] dark:text-[#2997ff]">FINANCE TOOL · RMB</p>
+          <h1 className="text-3xl font-semibold tracking-tight sm:text-5xl">人民币金额大写</h1>
+          <p className="mx-auto mt-4 max-w-md text-base leading-7 text-[#6e6e73] dark:text-[#a1a1a6] sm:text-lg">把数字金额，快速转换成规范的财务大写。</p>
         </header>
 
-        <section className="rounded-2xl border border-slate-200 bg-white p-4 dark:border-slate-800 dark:bg-slate-900 sm:p-6">
-          <label className="mb-2 block text-sm font-semibold text-slate-700 dark:text-slate-200" htmlFor="amount">报销金额（小写）</label>
-          <div className="flex items-stretch gap-2 sm:gap-3">
-            <div className="flex min-w-0 flex-1 items-center rounded-xl border border-slate-300 bg-white transition focus-within:border-blue-500 focus-within:ring-2 focus-within:ring-blue-500/15 dark:border-slate-700 dark:bg-slate-950">
-              <span className="select-none pl-4 text-xl font-semibold text-slate-400" aria-hidden="true">¥</span>
-              <input
-                id="amount"
-                name="amount"
-                type="text"
-                inputMode="decimal"
-                autoComplete="off"
-                spellCheck={false}
-                value={amount}
-                onChange={(event) => updateAmount(event.target.value)}
-                onKeyDown={(event) => {
-                  if ((event.ctrlKey || event.metaKey) && event.key === "Enter") {
-                    event.preventDefault();
-                    void copyResult();
-                  } else if (event.key === "Escape") {
-                    clear();
-                  }
-                }}
-                placeholder="输入或粘贴金额，例如 3010.01"
-                aria-describedby="amount-help"
-                className="h-14 min-w-0 w-full rounded-xl border-0 bg-transparent px-2 text-lg font-semibold text-slate-900 outline-none ring-0 placeholder:text-xs placeholder:font-normal placeholder:text-slate-400 focus:outline-none focus:ring-0 dark:text-white dark:placeholder:text-slate-600 sm:h-16 sm:px-3 sm:text-2xl sm:placeholder:text-base"
-              />
-            </div>
+        <section className="overflow-hidden rounded-[28px] border border-black/[0.04] bg-white p-5 shadow-[0_8px_32px_rgba(0,0,0,0.04)] dark:border-white/10 dark:bg-[#1c1c1e] sm:p-8">
+          <label className="mb-3 block text-sm font-medium text-[#6e6e73] dark:text-[#a1a1a6]" htmlFor="amount">输入金额（人民币）</label>
+          <div className="flex items-center gap-3 rounded-2xl border border-[#d2d2d7] bg-[#fbfbfd] p-2 transition focus-within:border-[#06c] focus-within:ring-4 focus-within:ring-[#06c]/10 dark:border-[#48484a] dark:bg-[#2c2c2e]">
+            <span className="pl-3 text-2xl font-medium text-[#86868b] sm:text-3xl" aria-hidden="true">¥</span>
+            <input
+              id="amount"
+              name="amount"
+              type="text"
+              inputMode="decimal"
+              autoComplete="off"
+              spellCheck={false}
+              value={amount}
+              onChange={(event) => updateAmount(event.target.value)}
+              onKeyDown={(event) => {
+                if ((event.ctrlKey || event.metaKey) && event.key === "Enter") {
+                  event.preventDefault();
+                  void copyResult();
+                } else if (event.key === "Escape") {
+                  clear();
+                }
+              }}
+              placeholder="0.00"
+              aria-describedby="amount-help"
+              className="h-14 min-w-0 w-full border-0 bg-transparent px-1 text-2xl font-semibold tracking-tight text-[#1d1d1f] outline-none placeholder:text-[#c7c7cc] focus:outline-none focus:ring-0 dark:text-white dark:placeholder:text-[#636366] sm:h-16 sm:text-4xl"
+            />
             <button
               type="button"
               onClick={pasteAmount}
-              className="inline-flex min-h-14 shrink-0 items-center justify-center gap-1.5 rounded-xl bg-slate-100 px-3 text-sm font-semibold text-slate-700 transition hover:bg-blue-100 hover:text-blue-800 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-blue-500/20 dark:bg-slate-800 dark:text-slate-200 dark:hover:bg-slate-700 dark:hover:text-white sm:min-h-16 sm:gap-2 sm:px-5 sm:text-base"
+              className="inline-flex h-11 shrink-0 items-center justify-center gap-2 rounded-xl bg-[#0071e3] px-4 text-sm font-semibold text-white transition hover:bg-[#0077ed] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#06c]/25 sm:h-12"
               aria-label="从剪贴板粘贴金额"
             >
-              <ClipboardPaste size={20} aria-hidden="true" />
+              <ClipboardPaste size={17} aria-hidden="true" />
               <span>粘贴</span>
             </button>
           </div>
-          <p id="amount-help" className="mt-3 text-xs leading-relaxed text-slate-500 dark:text-slate-400">可直接输入或使用 Ctrl+V 粘贴；支持最多 16 位整数、2 位小数。</p>
+          <p id="amount-help" className="mt-3 px-1 text-xs leading-5 text-[#86868b] dark:text-[#a1a1a6]">支持最多 16 位整数、2 位小数。也可以直接使用 Ctrl + V 粘贴。</p>
 
-          <div className="mt-5 rounded-xl border border-slate-200 bg-slate-50 p-4 dark:border-slate-700 dark:bg-slate-950 sm:p-5" aria-live="polite">
-            <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
-              <h2 className="text-sm font-semibold text-slate-600 dark:text-slate-300">报销单大写金额</h2>
-              {conversion.value && <span className="inline-flex items-center gap-1 rounded-full border border-emerald-200 bg-emerald-50 px-3 py-1 text-xs font-bold text-emerald-700 dark:border-emerald-400/20 dark:bg-emerald-400/10 dark:text-emerald-300"><Check size={13} aria-hidden="true" />转换完成</span>}
+          <div className="my-7 h-px bg-[#e8e8ed] dark:bg-[#38383a]" />
+
+          <div aria-live="polite">
+            <div className="mb-3 flex items-center justify-between gap-3">
+              <h2 className="text-sm font-semibold text-[#6e6e73] dark:text-[#a1a1a6]">转换结果</h2>
+              {conversion.value && !conversion.error && (
+                <span className="inline-flex items-center gap-1.5 text-xs font-medium text-[#248a3d] dark:text-[#30d158]">
+                  <Check size={14} aria-hidden="true" />
+                  转换完成
+                </span>
+              )}
             </div>
             <button
               type="button"
               onClick={copyResult}
-              disabled={!conversion.value}
+              disabled={!conversion.value || Boolean(conversion.error)}
               aria-label="点击复制大写金额"
-              className={`min-h-14 w-full break-words rounded-lg py-1 text-left text-lg font-semibold leading-relaxed transition sm:min-h-16 sm:text-xl ${conversion.error ? 'text-red-600' : conversion.value ? 'cursor-pointer text-slate-900 hover:text-blue-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 dark:text-slate-50 dark:hover:text-blue-300' : 'cursor-default text-slate-400'}`}
+              className={`min-h-28 w-full rounded-2xl p-4 text-left text-xl font-semibold leading-relaxed transition sm:min-h-32 sm:p-5 sm:text-2xl ${conversion.error ? 'bg-[#fff2f4] text-[#d70015] dark:bg-[#3a171b] dark:text-[#ff6961]' : conversion.value ? 'cursor-pointer bg-[#f5f5f7] text-[#1d1d1f] hover:bg-[#ededf0] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#06c] dark:bg-[#2c2c2e] dark:text-white dark:hover:bg-[#38383a]' : 'cursor-default bg-[#f5f5f7] text-[#86868b] dark:bg-[#2c2c2e] dark:text-[#a1a1a6]'}`}
             >
               {conversion.error || (conversion.value
                 ? (() => {
@@ -122,31 +128,34 @@ function App() {
                       (last, char, index) => financialDigits.includes(char) ? index : last,
                       -1,
                     );
-                    // 最后一个非零大写数字之后，所有“零”都画红线，包括佰、拾、圆、角、分前的零。
                     return chars.map((char, index) => {
                       const markZero = char === '零' && index > lastNonZeroDigit;
                       return markZero
-                        ? <span key={index} style={{ textDecorationLine: 'line-through', textDecorationColor: '#ef4444', textDecorationThickness: '2px', textDecorationSkipInk: 'none' }}>{char}</span>
+                        ? <span key={index} style={{ textDecorationLine: 'line-through', textDecorationColor: '#ff3b30', textDecorationThickness: '2px', textDecorationSkipInk: 'none' }}>{char}</span>
                         : char;
                     });
                   })()
-                : '等待输入金额')}
+                : '金额大写将显示在这里')}
             </button>
-            {conversion.value && (
-              <p className="mt-2 text-sm text-slate-500">
-                {copied ? '已复制到剪贴板' : '点击金额即可复制'}
+            <div className="mt-4 flex min-h-10 flex-wrap items-center justify-between gap-3">
+              <p className="text-sm text-[#86868b] dark:text-[#a1a1a6]" role="status">
+                {notice || (conversion.value ? (copied ? '已复制到剪贴板' : '点击结果区域即可复制') : '金额仅在本地浏览器处理')}
               </p>
-            )}
-          </div>
-
-          <div className="mt-4 flex min-h-9 flex-col-reverse items-stretch gap-3 sm:flex-row sm:items-center sm:justify-between">
-            <p className="text-xs leading-relaxed text-slate-500 dark:text-slate-400 sm:text-sm" role="status">{notice || '金额仅在本地浏览器处理，不会上传'}</p>
-            <button type="button" onClick={clear} className="inline-flex min-h-11 shrink-0 items-center justify-center gap-2 self-end rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-600 transition hover:border-blue-200 hover:bg-blue-50 hover:text-blue-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-300 dark:hover:border-slate-600 dark:hover:bg-slate-700 dark:hover:text-white">
-              <RotateCcw size={15} aria-hidden="true" />
-              清空
-            </button>
+              <button
+                type="button"
+                onClick={clear}
+                className="inline-flex h-9 items-center justify-center gap-1.5 rounded-full px-3 text-sm font-medium text-[#06c] transition hover:bg-[#06c]/[0.08] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#06c] dark:text-[#2997ff]"
+              >
+                <RotateCcw size={14} aria-hidden="true" />
+                清空
+              </button>
+            </div>
           </div>
         </section>
+
+        <footer className="mt-6 text-center text-xs leading-5 text-[#86868b] dark:text-[#6e6e73]">
+          为日常报销与财务填写设计 · 无需上传数据
+        </footer>
       </main>
     </div>
   );
