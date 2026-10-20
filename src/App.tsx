@@ -65,7 +65,7 @@ function App() {
 
         <section className="overflow-hidden rounded-2xl border border-[#e5e5ea] bg-white p-4 dark:border-[#38383a] dark:bg-[#1c1c1e] sm:p-6">
           <label className="mb-3 block text-sm font-medium text-[#6e6e73] dark:text-[#a1a1a6]" htmlFor="amount">输入金额（人民币）</label>
-          <div className="flex items-center gap-3 rounded-full border border-[#d2d2d7] bg-[#fbfbfd] p-1.5 transition focus-within:border-[#06c] focus-within:ring-4 focus-within:ring-[#06c]/10 dark:border-[#48484a] dark:bg-[#2c2c2e]">
+          <div className="flex items-center gap-3 rounded-full border border-[#d2d2d7] bg-[#fbfbfd] p-1.5 transition focus-within:border-[#888888] focus-within:ring-4 focus-within:ring-[#888888]/15 dark:border-[#48484a] dark:bg-[#2c2c2e]">
             <span className="pl-2.5 text-xl font-medium text-[#86868b] sm:text-2xl" aria-hidden="true">¥</span>
             <input
               id="amount"
@@ -91,7 +91,7 @@ function App() {
             <button
               type="button"
               onClick={pasteAmount}
-              className="inline-flex h-9 shrink-0 items-center justify-center gap-2 rounded-full bg-[#0071e3] px-3.5 text-sm font-semibold text-white transition hover:bg-[#0077ed] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#06c]/25 sm:h-10"
+              className="inline-flex h-9 shrink-0 items-center justify-center gap-2 rounded-full bg-[#222222] px-3.5 text-sm font-semibold text-white transition hover:bg-[#444444] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#888888]/25 sm:h-10"
               aria-label="从剪贴板粘贴金额"
             >
               <ClipboardPaste size={17} aria-hidden="true" />
@@ -106,7 +106,7 @@ function App() {
             <div className="mb-3 flex items-center justify-between gap-3">
               <h2 className="text-sm font-semibold text-[#6e6e73] dark:text-[#a1a1a6]">转换结果</h2>
               {conversion.value && !conversion.error && (
-                <span className="inline-flex items-center gap-1.5 text-xs font-medium text-[#248a3d] dark:text-[#30d158]">
+                <span className="inline-flex items-center gap-1.5 text-xs font-medium text-[#555555] dark:text-[#d0d0d0]">
                   <Check size={14} aria-hidden="true" />
                   转换完成
                 </span>
@@ -117,7 +117,7 @@ function App() {
               onClick={copyResult}
               disabled={!conversion.value || Boolean(conversion.error)}
               aria-label="点击复制大写金额"
-              className={`min-h-24 w-full rounded-2xl px-5 py-4 text-left text-lg font-semibold leading-relaxed transition sm:min-h-28 sm:px-6 sm:text-xl ${conversion.error ? 'bg-[#fff2f4] text-[#d70015] dark:bg-[#3a171b] dark:text-[#ff6961]' : conversion.value ? 'cursor-pointer bg-[#f5f5f7] text-[#1d1d1f] hover:bg-[#ededf0] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#06c] dark:bg-[#2c2c2e] dark:text-white dark:hover:bg-[#38383a]' : 'cursor-default bg-[#f5f5f7] text-[#86868b] dark:bg-[#2c2c2e] dark:text-[#a1a1a6]'}`}
+              className={`min-h-24 w-full rounded-2xl px-5 py-4 text-left text-lg font-semibold leading-relaxed transition sm:min-h-28 sm:px-6 sm:text-xl ${conversion.error ? 'bg-[#eeeeee] text-[#222222] dark:bg-[#303030] dark:text-[#eeeeee]' : conversion.value ? 'cursor-pointer bg-[#f5f5f7] text-[#1d1d1f] hover:bg-[#ededf0] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#888888] dark:bg-[#2c2c2e] dark:text-white dark:hover:bg-[#383838]' : 'cursor-default bg-[#f5f5f7] text-[#86868b] dark:bg-[#2c2c2e] dark:text-[#a1a1a6]'}`}
             >
               {conversion.error || (conversion.value
                 ? (() => {
@@ -130,7 +130,7 @@ function App() {
                     return chars.map((char, index) => {
                       const markZero = char === '零' && index > lastNonZeroDigit;
                       return markZero
-                        ? <span key={index} style={{ textDecorationLine: 'line-through', textDecorationColor: '#ff3b30', textDecorationThickness: '2px', textDecorationSkipInk: 'none' }}>{char}</span>
+                        ? <span key={index} style={{ textDecorationLine: 'line-through', textDecorationColor: '#666666', textDecorationThickness: '2px', textDecorationSkipInk: 'none' }}>{char}</span>
                         : char;
                     });
                   })()
@@ -143,7 +143,7 @@ function App() {
               <button
                 type="button"
                 onClick={clear}
-                className="inline-flex h-9 items-center justify-center gap-1.5 rounded-full border border-[#d2d2d7] bg-white px-4 text-sm font-medium text-[#06c] transition hover:bg-[#f5f5f7] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#06c] dark:border-[#48484a] dark:bg-[#2c2c2e] dark:text-[#2997ff] dark:hover:bg-[#38383a]"
+                className="inline-flex h-9 items-center justify-center gap-1.5 rounded-full border border-[#d2d2d7] bg-white px-4 text-sm font-medium text-[#333333] transition hover:bg-[#f5f5f7] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#888888] dark:border-[#48484a] dark:bg-[#2c2c2e] dark:text-[#dddddd] dark:hover:bg-[#383838]"
               >
                 <RotateCcw size={14} aria-hidden="true" />
                 清空
