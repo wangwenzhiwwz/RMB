@@ -143,7 +143,7 @@ function App() {
               <button
                 type="button"
                 onClick={clear}
-                className="inline-flex h-9 items-center justify-center gap-1.5 rounded-full px-3 text-sm font-medium text-[#06c] transition hover:bg-[#06c]/[0.08] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#06c] dark:text-[#2997ff]"
+                className="inline-flex h-9 items-center justify-center gap-1.5 rounded-full border border-[#d2d2d7] bg-white px-4 text-sm font-medium text-[#06c] transition hover:bg-[#f5f5f7] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#06c] dark:border-[#48484a] dark:bg-[#2c2c2e] dark:text-[#2997ff] dark:hover:bg-[#38383a]"
               >
                 <RotateCcw size={14} aria-hidden="true" />
                 清空
