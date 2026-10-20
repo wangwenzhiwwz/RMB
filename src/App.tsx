@@ -56,16 +56,16 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[#f5f5f7] px-4 py-8 text-[#1d1d1f] transition-colors dark:bg-[#000] dark:text-[#f5f5f7] sm:py-12">
+    <div className="min-h-screen bg-[#f5f5f7] px-3 py-6 text-[#1d1d1f] transition-colors dark:bg-[#000] dark:text-[#f5f5f7] sm:px-4 sm:py-12">
       <main className="mx-auto w-full max-w-xl">
-        <header className="mb-7 text-center sm:mb-9">
-          <h1 className="text-3xl font-semibold tracking-tight sm:text-4xl">人民币金额大写</h1>
+        <header className="mb-5 text-center sm:mb-9">
+          <h1 className="text-2xl font-semibold tracking-tight sm:text-4xl">人民币金额大写</h1>
           <p className="mx-auto mt-2 max-w-md text-sm text-[#6e6e73] dark:text-[#b0b0b0] sm:text-base">快速转换为财务大写。</p>
         </header>
 
-        <section className="overflow-hidden rounded-2xl border border-[#e5e5ea] bg-white p-4 dark:border-[#2f2f31] dark:bg-[#161616] sm:p-6">
+        <section className="overflow-hidden rounded-2xl border border-[#e5e5ea] bg-white p-3 dark:border-[#2f2f31] dark:bg-[#161616] sm:p-6">
           <label className="mb-3 block text-sm font-medium text-[#6e6e73] dark:text-[#b0b0b0]" htmlFor="amount">输入金额（人民币）</label>
-          <div className="flex items-center gap-3 rounded-full border border-[#d2d2d7] bg-[#fbfbfd] p-1.5 transition focus-within:border-[#888888] focus-within:ring-4 focus-within:ring-[#888888]/15 dark:border-[#3a3a3c] dark:bg-[#202020]">
+          <div className="flex items-center gap-2 rounded-full border border-[#d2d2d7] bg-[#fbfbfd] p-1.5 transition focus-within:border-[#888888] focus-within:ring-4 focus-within:ring-[#888888]/15 dark:border-[#3a3a3c] dark:bg-[#202020]">
             <span className="pl-2.5 text-xl font-medium text-[#86868b] sm:text-2xl" aria-hidden="true">¥</span>
             <input
               id="amount"
@@ -86,12 +86,12 @@ function App() {
               }}
               placeholder="0.00"
               aria-describedby="amount-help"
-              className="h-11 min-w-0 w-full border-0 bg-transparent px-1 text-xl font-semibold tracking-tight text-[#1d1d1f] outline-none placeholder:text-[#c7c7cc] focus:outline-none focus:ring-0 dark:text-[#f5f5f5] dark:placeholder:text-[#777777] sm:h-12 sm:text-3xl"
+              className="h-10 min-w-0 w-full border-0 bg-transparent px-1 text-lg font-semibold tracking-tight text-[#1d1d1f] outline-none placeholder:text-[#c7c7cc] focus:outline-none focus:ring-0 dark:text-[#f5f5f5] dark:placeholder:text-[#777777] sm:h-12 sm:text-3xl"
             />
             <button
               type="button"
               onClick={pasteAmount}
-              className="inline-flex h-9 shrink-0 items-center justify-center gap-2 rounded-full bg-[#222222] px-3.5 text-sm font-semibold text-white transition hover:bg-[#444444] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#888888]/25 sm:h-10"
+              className="inline-flex h-9 shrink-0 items-center justify-center gap-2 rounded-full bg-[#222222] px-3 text-sm font-semibold text-white transition hover:bg-[#444444] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#888888]/25 sm:h-10"
               aria-label="从剪贴板粘贴金额"
             >
               <ClipboardPaste size={17} aria-hidden="true" />
