@@ -67,7 +67,7 @@ function App() {
 
         <section className="overflow-hidden rounded-2xl bg-white/80 p-3 shadow-sm shadow-black/[0.03] dark:bg-[#111112]/90 dark:shadow-black/30 sm:p-6">
           <label className="mb-3 block text-sm font-medium text-[#6e6e73] dark:text-[#a1a1a6]" htmlFor="amount">输入金额（人民币）</label>
-          <div className="flex items-center gap-2 rounded-full border border-black/[0.06] bg-[#fbfbfd]/80 p-1.5 transition focus-within:border-black/15 focus-within:ring-4 focus-within:ring-[#888888]/10 dark:border-white/[0.08] dark:bg-white/[0.06] dark:focus-within:border-white/[0.16] dark:focus-within:ring-white/[0.06]">
+          <div className="flex items-center gap-2 rounded-full border border-black/[0.14] bg-white p-1.5 shadow-sm shadow-black/[0.04] transition-all duration-200 focus-within:border-black/30 focus-within:ring-4 focus-within:ring-black/[0.08] dark:border-white/[0.2] dark:bg-[#1c1c1e] dark:shadow-black/30 dark:focus-within:border-white/[0.32] dark:focus-within:ring-white/[0.09]">
             <span className="pl-2.5 text-xl font-medium text-[#86868b] dark:text-[#8e8e93] sm:text-2xl" aria-hidden="true">¥</span>
             <input
               id="amount"
