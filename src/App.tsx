@@ -55,6 +55,8 @@ function App() {
     setNotice('');
   };
 
+  const glassButton = 'border border-white/60 bg-white/55 shadow-sm shadow-black/[0.04] backdrop-blur-xl backdrop-saturate-150 hover:bg-white/75 active:bg-white/85 dark:border-white/[0.14] dark:bg-white/[0.09] dark:shadow-black/20 dark:hover:bg-white/[0.15] dark:active:bg-white/[0.2]';
+
   return (
     <div className="min-h-screen bg-[#f5f5f7] px-3 py-6 text-[#1d1d1f] transition-colors duration-200 dark:bg-black dark:text-[#f5f5f7] sm:px-4 sm:py-12">
       <main className="mx-auto w-full max-w-xl">
@@ -91,7 +93,7 @@ function App() {
             <button
               type="button"
               onClick={pasteAmount}
-              className="inline-flex h-9 shrink-0 items-center justify-center gap-2 rounded-full bg-[#222222] px-3 text-sm font-semibold text-white transition hover:bg-[#444444] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#888888]/25 dark:bg-[#f2f2f7] dark:text-[#1c1c1e] dark:hover:bg-white dark:focus-visible:ring-[#a1a1a6]/30 sm:h-10"
+              className="inline-flex h-9 shrink-0 items-center justify-center gap-2 rounded-full border px-3 text-sm font-semibold transition-all duration-200 backdrop-blur-xl backdrop-saturate-150 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#888888]/25 dark:focus-visible:ring-white/20 sm:h-10 ${glassButton}"
               aria-label="从剪贴板粘贴金额"
             >
               <ClipboardPaste size={17} aria-hidden="true" />
@@ -117,7 +119,7 @@ function App() {
               onClick={copyResult}
               disabled={!conversion.value || Boolean(conversion.error)}
               aria-label="点击复制大写金额"
-              className={`min-h-24 w-full rounded-2xl px-5 py-4 text-left text-lg font-semibold leading-relaxed transition-colors duration-200 sm:min-h-28 sm:px-6 sm:text-xl ${conversion.error ? 'bg-[#eeeeee] text-[#222222] dark:bg-[#29292b] dark:text-[#e5e5ea]' : conversion.value ? 'cursor-pointer bg-[#f5f5f7] text-[#1d1d1f] hover:bg-[#ededf0] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#888888] dark:bg-[#202022] dark:text-[#f2f2f7] dark:hover:bg-[#2a2a2c] dark:focus-visible:ring-[#8e8e93]' : 'cursor-default bg-[#f0f0f0] text-[#777777] dark:bg-[#202022] dark:text-[#8e8e93]'}`}
+              className={`min-h-24 w-full rounded-2xl border px-5 py-4 text-left text-lg font-semibold leading-relaxed shadow-sm backdrop-blur-xl backdrop-saturate-150 transition-all duration-200 sm:min-h-28 sm:px-6 sm:text-xl ${conversion.error ? 'border-[#e2e2e7] bg-[#eeeeee]/75 text-[#222222] dark:border-white/[0.08] dark:bg-white/[0.06] dark:text-[#e5e5ea]' : conversion.value ? 'cursor-pointer border-white/70 bg-white/55 text-[#1d1d1f] shadow-black/[0.03] hover:bg-white/75 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#888888] dark:border-white/[0.12] dark:bg-white/[0.08] dark:text-[#f2f2f7] dark:shadow-black/20 dark:hover:bg-white/[0.13] dark:focus-visible:ring-[#8e8e93]' : 'cursor-default border-[#e5e5ea] bg-white/40 text-[#777777] dark:border-white/[0.08] dark:bg-white/[0.045] dark:text-[#8e8e93]'}`}
             >
               {conversion.error || (conversion.value
                 ? (() => {
@@ -143,7 +145,7 @@ function App() {
               <button
                 type="button"
                 onClick={clear}
-                className="inline-flex h-9 items-center justify-center gap-1.5 rounded-full border border-[#d2d2d7] bg-white px-4 text-sm font-medium text-[#333333] transition hover:bg-[#f5f5f7] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#888888] dark:border-[#3a3a3c] dark:bg-[#1c1c1e] dark:text-[#e5e5ea] dark:hover:bg-[#303032] dark:focus-visible:ring-[#8e8e93]"
+                className="inline-flex h-9 items-center justify-center gap-1.5 rounded-full border px-4 text-sm font-medium transition-all duration-200 backdrop-blur-xl backdrop-saturate-150 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#888888] dark:focus-visible:ring-[#8e8e93] ${glassButton}"
               >
                 <RotateCcw size={14} aria-hidden="true" />
                 清空
