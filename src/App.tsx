@@ -65,9 +65,9 @@ function App() {
           <p className="mx-auto mt-2 max-w-md text-sm text-[#6e6e73] dark:text-[#a1a1a6] sm:text-base">快速转换为财务大写。</p>
         </header>
 
-        <section className="overflow-hidden rounded-2xl border border-[#e5e5ea] bg-white p-3 shadow-sm shadow-black/[0.02] dark:border-[#303034] dark:bg-[#111112] dark:shadow-black/30 sm:p-6">
+        <section className="overflow-hidden rounded-2xl bg-white/80 p-3 shadow-sm shadow-black/[0.03] dark:bg-[#111112]/90 dark:shadow-black/30 sm:p-6">
           <label className="mb-3 block text-sm font-medium text-[#6e6e73] dark:text-[#a1a1a6]" htmlFor="amount">输入金额（人民币）</label>
-          <div className="flex items-center gap-2 rounded-full border border-[#d2d2d7] bg-[#fbfbfd] p-1.5 transition focus-within:border-[#888888] focus-within:ring-4 focus-within:ring-[#888888]/15 dark:border-[#3a3a3c] dark:bg-[#1c1c1e] dark:focus-within:border-[#77777b] dark:focus-within:ring-[#a1a1a6]/15">
+          <div className="flex items-center gap-2 rounded-full border border-black/[0.06] bg-[#fbfbfd]/80 p-1.5 transition focus-within:border-black/15 focus-within:ring-4 focus-within:ring-[#888888]/10 dark:border-white/[0.08] dark:bg-white/[0.06] dark:focus-within:border-white/[0.16] dark:focus-within:ring-white/[0.06]">
             <span className="pl-2.5 text-xl font-medium text-[#86868b] dark:text-[#8e8e93] sm:text-2xl" aria-hidden="true">¥</span>
             <input
               id="amount"
@@ -93,7 +93,7 @@ function App() {
             <button
               type="button"
               onClick={pasteAmount}
-              className="inline-flex h-9 shrink-0 items-center justify-center gap-2 rounded-full border px-3 text-sm font-semibold transition-all duration-200 backdrop-blur-xl backdrop-saturate-150 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#888888]/25 dark:focus-visible:ring-white/20 sm:h-10 ${glassButton}"
+              className={`inline-flex h-9 shrink-0 items-center justify-center gap-2 rounded-full border px-3 text-sm font-semibold transition-all duration-200 backdrop-blur-xl backdrop-saturate-150 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#888888]/25 dark:focus-visible:ring-white/20 sm:h-10 ${glassButton}`}
               aria-label="从剪贴板粘贴金额"
             >
               <ClipboardPaste size={17} aria-hidden="true" />
@@ -102,7 +102,7 @@ function App() {
           </div>
           <p id="amount-help" className="mt-3 px-1 text-xs leading-5 text-[#86868b] dark:text-[#8e8e93]">最多 16 位整数，支持 2 位小数。</p>
 
-          <div className="my-5 h-px bg-[#e8e8ed] dark:bg-[#2c2c2e]" />
+          <div className="my-5 h-px bg-black/[0.06] dark:bg-white/[0.08]" />
 
           <div aria-live="polite">
             <div className="mb-3 flex items-center justify-between gap-3">
@@ -119,7 +119,7 @@ function App() {
               onClick={copyResult}
               disabled={!conversion.value || Boolean(conversion.error)}
               aria-label="点击复制大写金额"
-              className={`min-h-24 w-full rounded-2xl border px-5 py-4 text-left text-lg font-semibold leading-relaxed shadow-sm backdrop-blur-xl backdrop-saturate-150 transition-all duration-200 sm:min-h-28 sm:px-6 sm:text-xl ${conversion.error ? 'border-[#e2e2e7] bg-[#eeeeee]/75 text-[#222222] dark:border-white/[0.08] dark:bg-white/[0.06] dark:text-[#e5e5ea]' : conversion.value ? 'cursor-pointer border-white/70 bg-white/55 text-[#1d1d1f] shadow-black/[0.03] hover:bg-white/75 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#888888] dark:border-white/[0.12] dark:bg-white/[0.08] dark:text-[#f2f2f7] dark:shadow-black/20 dark:hover:bg-white/[0.13] dark:focus-visible:ring-[#8e8e93]' : 'cursor-default border-[#e5e5ea] bg-white/40 text-[#777777] dark:border-white/[0.08] dark:bg-white/[0.045] dark:text-[#8e8e93]'}`}
+              className={`min-h-24 w-full rounded-2xl px-5 py-4 text-left text-lg font-semibold leading-relaxed shadow-sm backdrop-blur-xl backdrop-saturate-150 transition-all duration-200 sm:min-h-28 sm:px-6 sm:text-xl ${conversion.error ? 'bg-[#eeeeee]/75 text-[#222222] dark:bg-white/[0.06] dark:text-[#e5e5ea]' : conversion.value ? 'cursor-pointer bg-white/55 text-[#1d1d1f] shadow-black/[0.03] hover:bg-white/75 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#888888] dark:bg-white/[0.08] dark:text-[#f2f2f7] dark:shadow-black/20 dark:hover:bg-white/[0.13] dark:focus-visible:ring-[#8e8e93]' : 'cursor-default bg-white/40 text-[#777777] dark:bg-white/[0.045] dark:text-[#8e8e93]'}`}
             >
               {conversion.error || (conversion.value
                 ? (() => {
@@ -145,7 +145,7 @@ function App() {
               <button
                 type="button"
                 onClick={clear}
-                className="inline-flex h-9 items-center justify-center gap-1.5 rounded-full border px-4 text-sm font-medium transition-all duration-200 backdrop-blur-xl backdrop-saturate-150 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#888888] dark:focus-visible:ring-[#8e8e93] ${glassButton}"
+                className={`inline-flex h-9 items-center justify-center gap-1.5 rounded-full border px-4 text-sm font-medium transition-all duration-200 backdrop-blur-xl backdrop-saturate-150 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#888888] dark:focus-visible:ring-[#8e8e93] ${glassButton}`}
               >
                 <RotateCcw size={14} aria-hidden="true" />
                 清空
