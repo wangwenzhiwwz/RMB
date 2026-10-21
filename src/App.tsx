@@ -56,17 +56,17 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[#f5f5f7] px-3 py-6 text-[#1d1d1f] transition-colors dark:bg-[#000] dark:text-[#f5f5f7] sm:px-4 sm:py-12">
+    <div className="min-h-screen bg-[#f5f5f7] px-3 py-6 text-[#1d1d1f] transition-colors duration-200 dark:bg-black dark:text-[#f5f5f7] sm:px-4 sm:py-12">
       <main className="mx-auto w-full max-w-xl">
         <header className="mb-5 text-center sm:mb-9">
           <h1 className="text-2xl font-semibold tracking-tight sm:text-4xl">人民币金额大写</h1>
-          <p className="mx-auto mt-2 max-w-md text-sm text-[#6e6e73] dark:text-[#b0b0b0] sm:text-base">快速转换为财务大写。</p>
+          <p className="mx-auto mt-2 max-w-md text-sm text-[#6e6e73] dark:text-[#a1a1a6] sm:text-base">快速转换为财务大写。</p>
         </header>
 
-        <section className="overflow-hidden rounded-2xl border border-[#e5e5ea] bg-white p-3 dark:border-[#2f2f31] dark:bg-[#161616] sm:p-6">
-          <label className="mb-3 block text-sm font-medium text-[#6e6e73] dark:text-[#b0b0b0]" htmlFor="amount">输入金额（人民币）</label>
-          <div className="flex items-center gap-2 rounded-full border border-[#d2d2d7] bg-[#fbfbfd] p-1.5 transition focus-within:border-[#888888] focus-within:ring-4 focus-within:ring-[#888888]/15 dark:border-[#3a3a3c] dark:bg-[#202020]">
-            <span className="pl-2.5 text-xl font-medium text-[#86868b] sm:text-2xl" aria-hidden="true">¥</span>
+        <section className="overflow-hidden rounded-2xl border border-[#e5e5ea] bg-white p-3 shadow-sm shadow-black/[0.02] dark:border-[#303034] dark:bg-[#111112] dark:shadow-black/30 sm:p-6">
+          <label className="mb-3 block text-sm font-medium text-[#6e6e73] dark:text-[#a1a1a6]" htmlFor="amount">输入金额（人民币）</label>
+          <div className="flex items-center gap-2 rounded-full border border-[#d2d2d7] bg-[#fbfbfd] p-1.5 transition focus-within:border-[#888888] focus-within:ring-4 focus-within:ring-[#888888]/15 dark:border-[#3a3a3c] dark:bg-[#1c1c1e] dark:focus-within:border-[#77777b] dark:focus-within:ring-[#a1a1a6]/15">
+            <span className="pl-2.5 text-xl font-medium text-[#86868b] dark:text-[#8e8e93] sm:text-2xl" aria-hidden="true">¥</span>
             <input
               id="amount"
               name="amount"
@@ -86,27 +86,27 @@ function App() {
               }}
               placeholder="0.00"
               aria-describedby="amount-help"
-              className="h-10 min-w-0 w-full border-0 bg-transparent px-1 text-lg font-semibold tracking-tight text-[#1d1d1f] outline-none placeholder:text-[#c7c7cc] focus:outline-none focus:ring-0 dark:text-[#f5f5f5] dark:placeholder:text-[#777777] sm:h-12 sm:text-3xl"
+              className="h-10 min-w-0 w-full border-0 bg-transparent px-1 text-lg font-semibold tracking-tight text-[#1d1d1f] outline-none placeholder:text-[#c7c7cc] focus:outline-none focus:ring-0 dark:text-[#f5f5f7] dark:placeholder:text-[#636366] sm:h-12 sm:text-3xl"
             />
             <button
               type="button"
               onClick={pasteAmount}
-              className="inline-flex h-9 shrink-0 items-center justify-center gap-2 rounded-full bg-[#222222] px-3 text-sm font-semibold text-white transition hover:bg-[#444444] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#888888]/25 sm:h-10"
+              className="inline-flex h-9 shrink-0 items-center justify-center gap-2 rounded-full bg-[#222222] px-3 text-sm font-semibold text-white transition hover:bg-[#444444] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#888888]/25 dark:bg-[#f2f2f7] dark:text-[#1c1c1e] dark:hover:bg-white dark:focus-visible:ring-[#a1a1a6]/30 sm:h-10"
               aria-label="从剪贴板粘贴金额"
             >
               <ClipboardPaste size={17} aria-hidden="true" />
               <span>粘贴</span>
             </button>
           </div>
-          <p id="amount-help" className="mt-3 px-1 text-xs leading-5 text-[#86868b] dark:text-[#b0b0b0]">最多 16 位整数，支持 2 位小数。</p>
+          <p id="amount-help" className="mt-3 px-1 text-xs leading-5 text-[#86868b] dark:text-[#8e8e93]">最多 16 位整数，支持 2 位小数。</p>
 
-          <div className="my-5 h-px bg-[#e8e8ed] dark:bg-[#38383a]" />
+          <div className="my-5 h-px bg-[#e8e8ed] dark:bg-[#2c2c2e]" />
 
           <div aria-live="polite">
             <div className="mb-3 flex items-center justify-between gap-3">
-              <h2 className="text-sm font-semibold text-[#6e6e73] dark:text-[#b0b0b0]">转换结果</h2>
+              <h2 className="text-sm font-semibold text-[#6e6e73] dark:text-[#a1a1a6]">转换结果</h2>
               {conversion.value && !conversion.error && (
-                <span className="inline-flex items-center gap-1.5 text-xs font-medium text-[#555555] dark:text-[#e0e0e0]">
+                <span className="inline-flex items-center gap-1.5 text-xs font-medium text-[#555555] dark:text-[#d1d1d6]">
                   <Check size={14} aria-hidden="true" />
                   转换完成
                 </span>
@@ -117,7 +117,7 @@ function App() {
               onClick={copyResult}
               disabled={!conversion.value || Boolean(conversion.error)}
               aria-label="点击复制大写金额"
-              className={`min-h-24 w-full rounded-2xl px-5 py-4 text-left text-lg font-semibold leading-relaxed transition sm:min-h-28 sm:px-6 sm:text-xl ${conversion.error ? 'bg-[#eeeeee] text-[#222222] dark:bg-[#303030] dark:text-[#eeeeee]' : conversion.value ? 'cursor-pointer bg-[#f5f5f7] text-[#1d1d1f] hover:bg-[#ededf0] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#888888] dark:bg-[#242424] dark:text-[#f2f2f2] dark:hover:bg-[#303030]' : 'cursor-default bg-[#f0f0f0] text-[#777777] dark:bg-[#242424] dark:text-[#999999]'}`}
+              className={`min-h-24 w-full rounded-2xl px-5 py-4 text-left text-lg font-semibold leading-relaxed transition-colors duration-200 sm:min-h-28 sm:px-6 sm:text-xl ${conversion.error ? 'bg-[#eeeeee] text-[#222222] dark:bg-[#29292b] dark:text-[#e5e5ea]' : conversion.value ? 'cursor-pointer bg-[#f5f5f7] text-[#1d1d1f] hover:bg-[#ededf0] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#888888] dark:bg-[#202022] dark:text-[#f2f2f7] dark:hover:bg-[#2a2a2c] dark:focus-visible:ring-[#8e8e93]' : 'cursor-default bg-[#f0f0f0] text-[#777777] dark:bg-[#202022] dark:text-[#8e8e93]'}`}
             >
               {conversion.error || (conversion.value
                 ? (() => {
@@ -137,13 +137,13 @@ function App() {
                 : '')}
             </button>
             <div className="mt-4 flex min-h-10 flex-wrap items-center justify-between gap-3">
-              <p className="text-sm text-[#86868b] dark:text-[#b0b0b0]" role="status">
+              <p className="text-sm text-[#86868b] dark:text-[#8e8e93]" role="status">
                 {notice || (conversion.value ? (copied ? '已复制到剪贴板' : '点击结果区域即可复制') : '')}
               </p>
               <button
                 type="button"
                 onClick={clear}
-                className="inline-flex h-9 items-center justify-center gap-1.5 rounded-full border border-[#d2d2d7] bg-white px-4 text-sm font-medium text-[#333333] transition hover:bg-[#f5f5f7] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#888888] dark:border-[#3a3a3c] dark:bg-[#202020] dark:text-[#dddddd] dark:hover:bg-[#383838]"
+                className="inline-flex h-9 items-center justify-center gap-1.5 rounded-full border border-[#d2d2d7] bg-white px-4 text-sm font-medium text-[#333333] transition hover:bg-[#f5f5f7] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#888888] dark:border-[#3a3a3c] dark:bg-[#1c1c1e] dark:text-[#e5e5ea] dark:hover:bg-[#303032] dark:focus-visible:ring-[#8e8e93]"
               >
                 <RotateCcw size={14} aria-hidden="true" />
                 清空
@@ -152,7 +152,7 @@ function App() {
           </div>
         </section>
 
-        <footer className="mt-4 text-center text-xs leading-5 text-[#86868b] dark:text-[#6e6e73]">
+        <footer className="mt-4 text-center text-xs leading-5 text-[#86868b] dark:text-[#636366]">
           为日常报销与财务填写设计 · 无需上传数据
         </footer>
       </main>
